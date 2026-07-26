@@ -35,6 +35,11 @@ button:disabled{background:#C9BFA8}
 .pct .t{font-size:14px;color:#B45309;font-weight:700;margin-top:4px}
 .bar{background:#F0E5CC;border-radius:99px;height:12px;margin-top:14px;overflow:hidden}
 .bar i{display:block;height:12px;background:#F37021;border-radius:99px;transition:width .8s}
+.bar i.g{background:#25D366}
+.pct .lb{font-size:12.5px;color:#B45309}
+.nxtBox{margin-top:18px;padding-top:16px;border-top:1.5px dashed #E9B87A}
+.nxtL{font-size:12.5px;color:#8A7B5A}
+.nxtN{font-family:'IBM Plex Mono',monospace;font-size:34px;font-weight:700;color:#1D9E75;line-height:1.05;margin:4px 0 2px}
 h3{font-size:15px;color:#3D1F00;margin-bottom:12px}
 .ser{display:flex;flex-wrap:wrap;gap:7px}
 .ser span{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:700;background:#FFF4E4;border:1.5px solid #E9D5A8;border-radius:9px;padding:8px 12px;color:#3D1F00}
@@ -43,6 +48,15 @@ h3{font-size:15px;color:#3D1F00;margin-bottom:12px}
 .up .l{font-size:14px;color:#8A7B5A}
 .up .m{font-size:19px;font-weight:900;color:#3D1F00;margin:6px 0}
 .up .m b{color:#F37021}
+.tick{display:none;background:#FFFDF6;border:1.5px solid #E9D5A8;border-radius:14px;padding:14px 16px;margin-bottom:12px;overflow:hidden}
+.tick .lbl{font-size:11px;color:#B4A98C;letter-spacing:.15em;margin-bottom:6px}
+.tick .row{font-size:14px;color:#3D1F00;transition:opacity .35s,transform .35s}
+.tick .row.out{opacity:0;transform:translateY(-8px)}
+.tick .row b{color:#F37021}
+.tick .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#25D366;margin-right:7px;vertical-align:1px}
+.backBar{display:none;background:#FFFDF6;border:1.5px solid #E9D5A8;border-radius:12px;padding:11px 16px;margin-bottom:12px;font-size:13.5px;color:#8A7B5A}
+.backBar span{font-family:'IBM Plex Mono',monospace;color:#3D1F00;font-weight:700}
+.backBar a{color:#F37021;font-weight:700;text-decoration:none;float:right}
 .err{background:#FFF4E4;border:1.5px solid #E9D5A8;border-radius:16px;padding:24px;text-align:center;font-size:15px;color:#8A7B5A}
 .grp{display:flex;align-items:center;justify-content:center;gap:12px;background:#25D366;color:#fff;border-radius:16px;padding:17px 20px;text-decoration:none;text-align:left;margin-bottom:14px}
 .grp .t{font-size:17px;font-weight:900}
@@ -62,11 +76,18 @@ h3{font-size:15px;color:#3D1F00;margin-bottom:12px}
   <p>以黑养黑 · 以你为贵 ｜ 8月26日 晚上8点 FB LIVE 开奖</p>
 </div>
 
-<div class="card">
+<div class="backBar" id="backBar"></div>
+
+<div class="card" id="searchCard">
   <label for="ph">下单时用的电话号码</label>
   <input id="ph" type="tel" inputmode="numeric" placeholder="012-345 6789" autocomplete="tel">
   <button id="go" onclick="lookup()">查我的券</button>
   <p class="hint">输入下单时留的号码就可以，不用记券号</p>
+</div>
+
+<div class="tick" id="tick">
+  <div class="lbl">最近下单</div>
+  <div class="row" id="tickRow"></div>
 </div>
 
 <a class="grp" href="https://chat.whatsapp.com/ForrFnTY39V1qfq2UMsatN?mode=gi_t" target="_blank" id="grpTop">
@@ -78,6 +99,8 @@ h3{font-size:15px;color:#3D1F00;margin-bottom:12px}
 <div id="out"></div>
 
 <p class="ft">
+  <b style="color:#B45309;font-size:13px">全场 11 位得主</b><br>
+  1 包包 · 2 耳环 · 1 项链 · 2 气炸锅 · 5 份三罐装<br><br>
   一人限中一份 · 中奖者其余券作废<br>
   得主 8月27日 官方专页公示 · 24小时未回应重抽
 </p>
@@ -114,7 +137,13 @@ async function lookup(){
     if (!j.found){
       out.innerHTML = '<div class="err">找不到这个号码的抽奖券。<br><br>'
         + '可能是订单还在处理中（最多 30 分钟），<br>或者下单时留的是别的号码。<br><br>'
-        + '还是找不到的话，WhatsApp 客服帮你查。</div>';
+        + '还是找不到的话，WhatsApp 客服帮你查。</div>'
+        + '<button style="background:#EDE3CD;color:#5F5E5A;margin-top:0" onclick="reset()">再查一次</button>';
+      document.getElementById("searchCard").style.display = "none";
+      document.getElementById("tick").style.display = "none";
+      var b0 = document.getElementById("backBar");
+      b0.style.display = "block";
+      b0.innerHTML = '<span>' + phone + '</span>　<a href="javascript:reset()">换一个号码</a>';
     } else {
       var h = '';
 
@@ -127,10 +156,23 @@ async function lookup(){
 
       if (j.percentile !== null && j.percentile !== undefined){
         h += '<div class="pct">'
+           + '<div class="lb">你的券数赢过</div>'
            + '<div class="n">' + j.percentile + '%</div>'
-           + '<div class="t">你的券数赢过 ' + j.percentile + '% 的参与者</div>'
-           + '<div class="bar"><i style="width:' + j.percentile + '%"></i></div>'
-           + '</div>';
+           + '<div class="t">的参与者</div>'
+           + '<div class="bar"><i style="width:' + j.percentile + '%"></i></div>';
+        if (j.percentileNext !== null && j.percentileNext > j.percentile && j.nextTier){
+          h += '<div class="nxtBox">'
+             + '<div class="nxtL">升级到 ' + esc(j.nextTier.label) + ' ' + esc(j.nextTier.price) + ' 之后</div>'
+             + '<div class="nxtN">' + j.percentileNext + '%</div>'
+             + '<div class="bar"><i class="g" style="width:' + j.percentileNext + '%"></i></div>'
+             + '<div class="nxtL" style="margin-top:8px">往上跳 ' + (j.percentileNext - j.percentile) + ' 个百分点</div>'
+             + '</div>';
+        }
+        h += '</div>';
+      } else {
+        h += '<div class="pct"><div class="t" style="font-size:15px;color:#B45309">活动刚开始</div>'
+           + '<div class="t" style="font-weight:400;margin-top:4px">你是最早参与的一批，'
+           + '现在券池最小、机会最集中</div></div>';
       }
 
       h += '<div class="card"><h3>你的券号</h3><div class="ser">'
@@ -157,6 +199,16 @@ async function lookup(){
          + '<div class="s">得主群内最先公布 · 别错过自己的号码</div></div></a>';
 
       out.innerHTML = h;
+
+      // 整个上半部收起来 —— 真的换页
+      document.getElementById("searchCard").style.display = "none";
+      document.getElementById("tick").style.display = "none";
+      document.getElementById("grpTop").style.display = "none";
+      document.querySelector(".hd").style.display = "none";
+      window.scrollTo({top:0});
+      var b = document.getElementById("backBar");
+      b.style.display = "block";
+      b.innerHTML = '<span>' + phone + '</span>　<a href="javascript:reset()">换一个号码</a>';
     }
   }catch(e){
     out.innerHTML = '<div class="err">连线失败，请稍后再试</div>';
@@ -164,10 +216,57 @@ async function lookup(){
 
   out.style.display = "block";
   btn.disabled = false; btn.textContent = "查我的券";
+  setTimeout(function(){ out.scrollIntoView({behavior:"smooth", block:"start"}); }, 60);
+}
+
+// ---- 最近下单跑马灯（真实资料）----
+var TICK = [], tickI = 0, tickTimer = null;
+
+async function loadTicker(){
+  try{
+    var r = await fetch(API + "?action=recentdraws");
+    var j = await r.json();
+    if (!j.items || j.items.length < 3) return;   // 太少人不显示，免得反而暴露单量
+    TICK = j.items.map(function(x){
+      return '<span class="dot"></span>' + esc(x.name)
+           + '　获得 <b>' + x.qty + '</b> 张抽奖券';
+    });
+    document.getElementById("tick").style.display = "block";
+    showTick();
+    tickTimer = setInterval(nextTick, 3200);
+  }catch(e){}
+}
+
+function showTick(){
+  document.getElementById("tickRow").innerHTML = TICK[tickI % TICK.length];
+}
+
+function nextTick(){
+  var el = document.getElementById("tickRow");
+  el.classList.add("out");
+  setTimeout(function(){
+    tickI++;
+    showTick();
+    el.classList.remove("out");
+  }, 350);
+}
+
+function reset(){
+  document.getElementById("searchCard").style.display = "";
+  if (TICK.length) document.getElementById("tick").style.display = "block";
+  document.getElementById("grpTop").style.display = "";
+  document.querySelector(".hd").style.display = "";
+  document.getElementById("backBar").style.display = "none";
+  document.getElementById("out").style.display = "none";
+  document.getElementById("ph").value = "";
+  window.scrollTo({top:0, behavior:"smooth"});
+  document.getElementById("ph").focus();
 }
 
 document.getElementById("ph").addEventListener("keydown", function(e){
   if (e.key === "Enter") lookup();
 });
+
+loadTicker();
 </script>
 </body></html>
