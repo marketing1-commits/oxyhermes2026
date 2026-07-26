@@ -54,6 +54,7 @@ h3{font-size:15px;color:#3D1F00;margin-bottom:12px}
 .tick .row.out{opacity:0;transform:translateY(-8px)}
 .tick .row b{color:#F37021}
 .tick .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#25D366;margin-right:7px;vertical-align:1px}
+#tick2{margin-top:14px;margin-bottom:0}
 .backBar{display:none;background:#FFFDF6;border:1.5px solid #E9D5A8;border-radius:12px;padding:11px 16px;margin-bottom:12px;font-size:13.5px;color:#8A7B5A}
 .backBar span{font-family:'IBM Plex Mono',monospace;color:#3D1F00;font-weight:700}
 .backBar a{color:#F37021;font-weight:700;text-decoration:none;float:right}
@@ -98,6 +99,11 @@ h3{font-size:15px;color:#3D1F00;margin-bottom:12px}
 
 <div id="out"></div>
 
+<div class="tick" id="tick2">
+  <div class="lbl">其他人正在参与</div>
+  <div class="row" id="tickRow2"></div>
+</div>
+
 <p class="ft">
   <b style="color:#B45309;font-size:13px">全场 11 位得主</b><br>
   1 包包 · 2 耳环 · 1 项链 · 2 气炸锅 · 5 份三罐装<br><br>
@@ -141,6 +147,7 @@ async function lookup(){
         + '<button style="background:#EDE3CD;color:#5F5E5A;margin-top:0" onclick="reset()">再查一次</button>';
       document.getElementById("searchCard").style.display = "none";
       document.getElementById("tick").style.display = "none";
+      document.getElementById("tick2").style.display = "none";
       var b0 = document.getElementById("backBar");
       b0.style.display = "block";
       b0.innerHTML = '<span>' + phone + '</span>　<a href="javascript:reset()">换一个号码</a>';
@@ -205,6 +212,7 @@ async function lookup(){
       document.getElementById("tick").style.display = "none";
       document.getElementById("grpTop").style.display = "none";
       document.querySelector(".hd").style.display = "none";
+      if (TICK.length) document.getElementById("tick2").style.display = "block";
       window.scrollTo({top:0});
       var b = document.getElementById("backBar");
       b.style.display = "block";
@@ -226,7 +234,7 @@ async function loadTicker(){
   try{
     var r = await fetch(API + "?action=recentdraws");
     var j = await r.json();
-    if (!j.items || j.items.length < 3) return;   // 太少人不显示，免得反而暴露单量
+    if (!j.items || j.items.length < 1) return;   // 有一笔就显示
     TICK = j.items.map(function(x){
       return '<span class="dot"></span>' + esc(x.name)
            + '　获得 <b>' + x.qty + '</b> 张抽奖券';
@@ -238,22 +246,26 @@ async function loadTicker(){
 }
 
 function showTick(){
-  document.getElementById("tickRow").innerHTML = TICK[tickI % TICK.length];
+  var html = TICK[tickI % TICK.length];
+  document.getElementById("tickRow").innerHTML  = html;
+  // 结果页那个错开一笔，两边不会同步跳，看起来更像真的在动
+  document.getElementById("tickRow2").innerHTML = TICK[(tickI + 1) % TICK.length];
 }
 
 function nextTick(){
-  var el = document.getElementById("tickRow");
-  el.classList.add("out");
+  var a = document.getElementById("tickRow"), b = document.getElementById("tickRow2");
+  a.classList.add("out"); b.classList.add("out");
   setTimeout(function(){
     tickI++;
     showTick();
-    el.classList.remove("out");
+    a.classList.remove("out"); b.classList.remove("out");
   }, 350);
 }
 
 function reset(){
   document.getElementById("searchCard").style.display = "";
   if (TICK.length) document.getElementById("tick").style.display = "block";
+  document.getElementById("tick2").style.display = "none";
   document.getElementById("grpTop").style.display = "";
   document.querySelector(".hd").style.display = "";
   document.getElementById("backBar").style.display = "none";
