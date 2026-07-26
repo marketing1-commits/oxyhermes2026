@@ -7,58 +7,70 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Noto Sans SC',-apple-system,sans-serif;background:linear-gradient(165deg,#FDF8EC,#F3E7CD);color:#2A1600;min-height:100vh;padding:20px 16px 60px}
+body{font-family:'Noto Sans SC',-apple-system,sans-serif;background:linear-gradient(165deg,#F6E3C6 0%,#F3CFA0 45%,#EE9B55 100%);background-attachment:fixed;color:#2A1600;min-height:100vh;padding:20px 16px 60px}
 .w{max-width:520px;margin:0 auto}
 .hd{text-align:center;padding:26px 0 22px}
 .logos{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:16px}
 .lg-oxy{height:34px;width:auto}
 .lg-her{height:40px;width:auto}
 .logos .x{font-size:17px;color:#B4A98C;font-weight:300}
-h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:30px;color:#3D1F00;margin:8px 0 6px}
+h1{font-family:'Noto Serif SC',serif;font-weight:900;font-size:30px;color:#40200A;margin:8px 0 6px}
 .hd p{font-size:14px;color:#8A7B5A}
-.card{background:#FFFDF6;border:1.5px solid #E9D5A8;border-radius:16px;padding:22px;margin-bottom:14px}
-label{display:block;font-size:14px;font-weight:700;color:#3D1F00;margin-bottom:8px}
-input{width:100%;padding:14px 16px;border:1.5px solid #E9D5A8;border-radius:12px;font-size:17px;font-family:'IBM Plex Mono',monospace;background:#fff}
-input:focus{outline:none;border-color:#F37021}
-button{width:100%;margin-top:12px;padding:15px;border:none;border-radius:12px;background:#F37021;color:#fff;font-size:16px;font-weight:900;cursor:pointer;font-family:inherit}
+.card{background:#FFF9EE;border:1.5px solid #E4BE8A;border-radius:16px;padding:22px;margin-bottom:14px}
+label{display:block;font-size:14px;font-weight:700;color:#40200A;margin-bottom:8px}
+input{width:100%;padding:14px 16px;border:1.5px solid #E4BE8A;border-radius:12px;font-size:17px;font-family:'IBM Plex Mono',monospace;background:#fff}
+input:focus{outline:none;border-color:#EB4B02;box-shadow:0 0 0 3px rgba(235,75,2,.12)}
+button{width:100%;margin-top:12px;padding:15px;border:none;border-radius:12px;background:linear-gradient(135deg,#EE7B22,#EB4B02);color:#fff;font-size:16px;font-weight:900;cursor:pointer;font-family:inherit}
 button:active{transform:scale(.99)}
 button:disabled{background:#C9BFA8}
 .hint{font-size:12.5px;color:#8A7B5A;margin-top:10px;text-align:center}
 #out{display:none}
-.hero{background:linear-gradient(150deg,#3D1F00,#5A3208);border-radius:16px;padding:26px 22px;text-align:center;color:#EDD9B4;margin-bottom:14px}
+.hero{background:linear-gradient(150deg,#40200A,#6B3A12);border-radius:16px;padding:26px 22px;text-align:center;color:#EDD9B4;margin-bottom:14px}
 .hero .nm{font-size:14px;color:#EDD9B4}
-.hero .big{font-family:'IBM Plex Mono',monospace;font-size:52px;font-weight:700;color:#F0B94A;line-height:1.1;margin:6px 0 2px}
+.hero .big{font-family:'IBM Plex Mono',monospace;font-size:52px;font-weight:700;color:#FFCA50;line-height:1.1;margin:6px 0 2px}
 .hero .u{font-size:15px;color:#fff;font-weight:700}
-.eb{display:inline-block;margin-top:10px;background:#F37021;color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:99px}
-.pct{background:#FFF4E4;border:1.5px solid #F37021;border-radius:16px;padding:20px;margin-bottom:14px;text-align:center}
-.pct .n{font-family:'IBM Plex Mono',monospace;font-size:40px;font-weight:700;color:#F37021;line-height:1}
-.pct .t{font-size:14px;color:#B45309;font-weight:700;margin-top:4px}
-.bar{background:#F0E5CC;border-radius:99px;height:12px;margin-top:14px;overflow:hidden}
-.bar i{display:block;height:12px;background:#F37021;border-radius:99px;transition:width .8s}
+.eb{display:inline-block;margin-top:10px;background:#EB4B02;color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:99px}
+.pct{background:#FFF0DC;border:1.5px solid #EB4B02;border-radius:16px;padding:20px;margin-bottom:14px;text-align:center}
+.pct .n{font-family:'IBM Plex Mono',monospace;font-size:40px;font-weight:700;color:#EB4B02;line-height:1}
+.pct .t{font-size:14px;color:#A8390B;font-weight:700;margin-top:4px}
+.bar{background:#EBD5B4;border-radius:99px;height:12px;margin-top:14px;overflow:hidden}
+.bar i{display:block;height:12px;background:linear-gradient(90deg,#EE7B22,#EB4B02);border-radius:99px;transition:width .8s}
 .bar i.g{background:#25D366}
-.pct .lb{font-size:12.5px;color:#B45309}
+.pct .lb{font-size:12.5px;color:#A8390B}
 .nxtBox{margin-top:18px;padding-top:16px;border-top:1.5px dashed #E9B87A}
 .nxtL{font-size:12.5px;color:#8A7B5A}
 .nxtN{font-family:'IBM Plex Mono',monospace;font-size:34px;font-weight:700;color:#1D9E75;line-height:1.05;margin:4px 0 2px}
-h3{font-size:15px;color:#3D1F00;margin-bottom:12px}
+h3{font-size:15px;color:#40200A;margin-bottom:12px}
 .ser{display:flex;flex-wrap:wrap;gap:7px}
-.ser span{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:700;background:#FFF4E4;border:1.5px solid #E9D5A8;border-radius:9px;padding:8px 12px;color:#3D1F00}
-.dl{display:block;margin-top:14px;padding:14px;background:#3D1F00;color:#F0B94A;text-align:center;border-radius:12px;text-decoration:none;font-weight:700;font-size:15px}
-.up{background:#FFFDF6;border:2px dashed #F37021;border-radius:16px;padding:20px;text-align:center}
+.ser span{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:700;background:#FFEFD8;border:1.5px solid #E4BE8A;border-radius:9px;padding:8px 12px;color:#40200A}
+.dl{display:block;margin-top:14px;padding:14px;background:linear-gradient(135deg,#40200A,#6B3A12);color:#FFCA50;text-align:center;border-radius:12px;text-decoration:none;font-weight:700;font-size:15px}
+.up{background:#FFF9EE;border:2px dashed #EB4B02;border-radius:16px;padding:20px;text-align:center}
 .up .l{font-size:14px;color:#8A7B5A}
-.up .m{font-size:19px;font-weight:900;color:#3D1F00;margin:6px 0}
-.up .m b{color:#F37021}
-.tick{display:none;background:#FFFDF6;border:1.5px solid #E9D5A8;border-radius:14px;padding:14px 16px;margin-bottom:12px;overflow:hidden}
+.up .m{font-size:19px;font-weight:900;color:#40200A;margin:6px 0}
+.up .m b{color:#EB4B02}
+.tick{display:none;background:#FFF9EE;border:1.5px solid #E4BE8A;border-radius:14px;padding:14px 16px;margin-bottom:12px;overflow:hidden}
 .tick .lbl{font-size:11px;color:#B4A98C;letter-spacing:.15em;margin-bottom:6px}
-.tick .row{font-size:14px;color:#3D1F00;transition:opacity .35s,transform .35s}
+.tick .row{font-size:14px;color:#40200A;transition:opacity .35s,transform .35s}
 .tick .row.out{opacity:0;transform:translateY(-8px)}
-.tick .row b{color:#F37021}
+.tick .row b{color:#EB4B02}
 .tick .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#25D366;margin-right:7px;vertical-align:1px}
-#tick2{margin-top:14px;margin-bottom:0}
-.backBar{display:none;background:#FFFDF6;border:1.5px solid #E9D5A8;border-radius:12px;padding:11px 16px;margin-bottom:12px;font-size:13.5px;color:#8A7B5A}
-.backBar span{font-family:'IBM Plex Mono',monospace;color:#3D1F00;font-weight:700}
-.backBar a{color:#F37021;font-weight:700;text-decoration:none;float:right}
-.err{background:#FFF4E4;border:1.5px solid #E9D5A8;border-radius:16px;padding:24px;text-align:center;font-size:15px;color:#8A7B5A}
+.tick .dot.gold{background:#FFCA50}
+#tick2{margin-top:0;margin-bottom:14px}
+.cd{background:linear-gradient(150deg,#40200A,#6B3A12);border-radius:16px;padding:18px 16px;margin-bottom:12px;text-align:center;color:#EDD9B4}
+.cd .lb{font-size:12px;color:#C9B78E;letter-spacing:.12em}
+.cd .grid{display:flex;justify-content:center;gap:8px;margin-top:10px}
+.cd .u{background:#5A3010;border:1px solid #8A5526;border-radius:10px;padding:9px 0;min-width:62px}
+.cd .u b{display:block;font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:700;color:#FFCA50;line-height:1}
+.cd .u span{font-size:10.5px;color:#C9B78E}
+.cd.eb{background:linear-gradient(150deg,#A8390B,#EB4B02)}
+.cd.eb .lb{color:#FFE8D0}
+.cd.eb .u{background:rgba(0,0,0,.18);border-color:rgba(255,255,255,.25)}
+.cd.eb .u b{color:#fff}
+.cd.eb .u span{color:#FFE8D0}
+.backBar{display:none;background:#FFF9EE;border:1.5px solid #E4BE8A;border-radius:12px;padding:11px 16px;margin-bottom:12px;font-size:13.5px;color:#8A7B5A}
+.backBar span{font-family:'IBM Plex Mono',monospace;color:#40200A;font-weight:700}
+.backBar a{color:#EB4B02;font-weight:700;text-decoration:none;float:right}
+.err{background:#FFF0DC;border:1.5px solid #E4BE8A;border-radius:16px;padding:24px;text-align:center;font-size:15px;color:#8A7B5A}
 .grp{display:flex;align-items:center;justify-content:center;gap:12px;background:#25D366;color:#fff;border-radius:16px;padding:17px 20px;text-decoration:none;text-align:left;margin-bottom:14px}
 .grp .t{font-size:17px;font-weight:900}
 .grp .s{font-size:13px;opacity:.92;margin-top:4px}
@@ -86,26 +98,26 @@ h3{font-size:15px;color:#3D1F00;margin-bottom:12px}
   <p class="hint">输入下单时留的号码就可以，不用记券号</p>
 </div>
 
-<div class="tick" id="tick">
-  <div class="lbl">最近下单</div>
-  <div class="row" id="tickRow"></div>
-</div>
-
 <a class="grp" href="https://chat.whatsapp.com/ForrFnTY39V1qfq2UMsatN?mode=gi_t" target="_blank" id="grpTop">
   <svg viewBox="0 0 24 24" width="22" height="22" fill="#fff" style="flex-shrink:0"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.48-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35z"/><path d="M12 2C6.48 2 2 6.48 2 12c0 1.77.46 3.42 1.27 4.86L2 22l5.28-1.24A9.95 9.95 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18.13c-1.6 0-3.09-.47-4.34-1.28l-.31-.19-3.21.75.76-3.13-.2-.32A8.09 8.09 0 0 1 3.87 12 8.13 8.13 0 1 1 12 20.13z"/></svg>
   <div><div class="t">加入 WhatsApp 直播群</div>
   <div class="s">8月26日开奖，得主在群里最先公布</div></div>
 </a>
 
-<div id="out"></div>
+<div class="cd" id="cd" style="display:none">
+  <div class="lb" id="cdLb">距离开奖</div>
+  <div class="grid" id="cdGrid"></div>
+</div>
 
 <div class="tick" id="tick2">
-  <div class="lbl">其他人正在参与</div>
+  <div class="lbl">活动进行中</div>
   <div class="row" id="tickRow2"></div>
 </div>
 
+<div id="out"></div>
+
 <p class="ft">
-  <b style="color:#B45309;font-size:13px">全场 11 位得主</b><br>
+  <b style="color:#A8390B;font-size:13px">全场 11 位得主</b><br>
   1 包包 · 2 耳环 · 1 项链 · 2 气炸锅 · 5 份三罐装<br><br>
   一人限中一份 · 中奖者其余券作废<br>
   得主 8月27日 官方专页公示 · 24小时未回应重抽
@@ -146,7 +158,6 @@ async function lookup(){
         + '还是找不到的话，WhatsApp 客服帮你查。</div>'
         + '<button style="background:#EDE3CD;color:#5F5E5A;margin-top:0" onclick="reset()">再查一次</button>';
       document.getElementById("searchCard").style.display = "none";
-      document.getElementById("tick").style.display = "none";
       document.getElementById("tick2").style.display = "none";
       var b0 = document.getElementById("backBar");
       b0.style.display = "block";
@@ -177,7 +188,7 @@ async function lookup(){
         }
         h += '</div>';
       } else {
-        h += '<div class="pct"><div class="t" style="font-size:15px;color:#B45309">活动刚开始</div>'
+        h += '<div class="pct"><div class="t" style="font-size:15px;color:#A8390B">活动刚开始</div>'
            + '<div class="t" style="font-weight:400;margin-top:4px">你是最早参与的一批，'
            + '现在券池最小、机会最集中</div></div>';
       }
@@ -193,7 +204,7 @@ async function lookup(){
       if (j.nextTier){
         h += '<div class="up"><div class="l">想要更多机会？</div>'
            + '<div class="m">升级到 ' + esc(j.nextTier.label) + ' <b>' + esc(j.nextTier.price) + '</b></div>'
-           + '<div class="l">券数变 <b style="color:#F37021">' + j.nextTier.tickets + ' 张</b>（多 '
+           + '<div class="l">券数变 <b style="color:#EB4B02">' + j.nextTier.tickets + ' 张</b>（多 '
            + j.nextTier.more + ' 张）</div></div>';
       } else {
         h += '<div class="up"><div class="m">👑 你是券王</div>'
@@ -209,10 +220,11 @@ async function lookup(){
 
       // 整个上半部收起来 —— 真的换页
       document.getElementById("searchCard").style.display = "none";
-      document.getElementById("tick").style.display = "none";
       document.getElementById("grpTop").style.display = "none";
       document.querySelector(".hd").style.display = "none";
-      if (TICK.length) document.getElementById("tick2").style.display = "block";
+      var cdEl = document.getElementById("cd");
+      cdEl.dataset.on = "1"; tickCountdown();
+      document.getElementById("tick2").style.display = "block";
       window.scrollTo({top:0});
       var b = document.getElementById("backBar");
       b.style.display = "block";
@@ -227,45 +239,96 @@ async function lookup(){
   setTimeout(function(){ out.scrollIntoView({behavior:"smooth", block:"start"}); }, 60);
 }
 
+// ---- 倒数计时（一直在动，开跑第一天就有）----
+var EB_END   = new Date(2026, 6, 31, 23, 59, 59);   // 早鸟结束 7/31
+var DRAW_AT  = new Date(2026, 7, 26, 20, 0, 0);     // 开奖 8/26 20:00
+
+function tickCountdown(){
+  var cd = document.getElementById("cd");
+  if (cd.dataset.on !== "1") return;              // 首页不显示
+
+  var now = new Date(), target, label, isEB = false;
+  if (now < EB_END){ target = EB_END; label = "早鸟券 ×2 剩下"; isEB = true; }
+  else if (now < DRAW_AT){ target = DRAW_AT; label = "距离开奖"; }
+  else { cd.style.display = "none"; return; }
+  cd.style.display = "block";
+
+  var d = Math.max(0, target - now);
+  var dd = Math.floor(d/86400000), hh = Math.floor(d/3600000)%24,
+      mm = Math.floor(d/60000)%60, ss = Math.floor(d/1000)%60;
+
+  document.getElementById("cd").className = "cd" + (isEB ? " eb" : "");
+  document.getElementById("cdLb").textContent = label;
+  document.getElementById("cdGrid").innerHTML =
+      unit(dd,"天") + unit(hh,"小时") + unit(mm,"分") + unit(ss,"秒");
+}
+function unit(n,l){ return '<div class="u"><b>'+String(n).padStart(2,"0")+'</b><span>'+l+'</span></div>'; }
+
 // ---- 最近下单跑马灯（真实资料）----
 var TICK = [], tickI = 0, tickTimer = null;
 
+// 固定轮播内容 —— 全部是真的，开跑第一天就有东西滚
+var BASE_TICK = [
+  '<span class="dot gold"></span>1st Prize　<b>HERMÈS 包包</b> × 1 位得主',
+  '<span class="dot gold"></span>2nd Prize　<b>HERMÈS 耳环</b> × 2 位得主',
+  '<span class="dot gold"></span>3rd Prize　<b>HERMÈS 项链</b> × 1 位得主',
+  '<span class="dot gold"></span>4th Prize　<b>Philips 气炸锅</b> × 2 位得主',
+  '<span class="dot gold"></span>5th Prize　<b>Oxygrainz 三罐装</b> × 5 位得主',
+  '<span class="dot"></span>2 罐 RM358　＝ <b>1</b> 张券',
+  '<span class="dot"></span>3 罐 RM509　＝ <b>2</b> 张券',
+  '<span class="dot"></span>5 罐 RM799　＝ <b>4</b> 张券',
+  '<span class="dot"></span>7 罐 RM1,088　＝ <b>6</b> 张券',
+  '<span class="dot"></span>10 罐 RM1,488　＝ <b>10</b> 张券',
+  '<span class="dot"></span>早鸟期下单　券数 <b>×2</b>',
+  '<span class="dot"></span>全场 <b>11</b> 位得主　一人限中一份'
+];
+
 async function loadTicker(){
+  var real = [];
   try{
     var r = await fetch(API + "?action=recentdraws");
     var j = await r.json();
-    if (!j.items || j.items.length < 1) return;   // 有一笔就显示
-    TICK = j.items.map(function(x){
-      return '<span class="dot"></span>' + esc(x.name)
-           + '　获得 <b>' + x.qty + '</b> 张抽奖券';
-    });
-    document.getElementById("tick").style.display = "block";
-    showTick();
-    tickTimer = setInterval(nextTick, 3200);
+    if (j.items && j.items.length){
+      real = j.items.map(function(x){
+        return '<span class="dot"></span>' + esc(x.name)
+             + '　获得 <b>' + x.qty + '</b> 张抽奖券';
+      });
+    }
   }catch(e){}
+
+  // 真实订单穿插进固定内容里，看起来最自然
+  TICK = BASE_TICK.slice();
+  real.forEach(function(x, i){ TICK.splice((i * 3 + 1) % (TICK.length + 1), 0, x); });
+
+  // 每次载入顺序都不一样
+  for (var i = TICK.length - 1; i > 0; i--){
+    var k = Math.floor(Math.random() * (i + 1));
+    var t = TICK[i]; TICK[i] = TICK[k]; TICK[k] = t;
+  }
+
+  showTick();
+  tickTimer = setInterval(nextTick, 3000);
 }
 
 function showTick(){
-  var html = TICK[tickI % TICK.length];
-  document.getElementById("tickRow").innerHTML  = html;
-  // 结果页那个错开一笔，两边不会同步跳，看起来更像真的在动
-  document.getElementById("tickRow2").innerHTML = TICK[(tickI + 1) % TICK.length];
+  document.getElementById("tickRow2").innerHTML = TICK[tickI % TICK.length];
 }
 
 function nextTick(){
-  var a = document.getElementById("tickRow"), b = document.getElementById("tickRow2");
-  a.classList.add("out"); b.classList.add("out");
+  var el = document.getElementById("tickRow2");
+  el.classList.add("out");
   setTimeout(function(){
     tickI++;
     showTick();
-    a.classList.remove("out"); b.classList.remove("out");
+    el.classList.remove("out");
   }, 350);
 }
 
 function reset(){
   document.getElementById("searchCard").style.display = "";
-  if (TICK.length) document.getElementById("tick").style.display = "block";
   document.getElementById("tick2").style.display = "none";
+  var c = document.getElementById("cd");
+  c.dataset.on = ""; c.style.display = "none";
   document.getElementById("grpTop").style.display = "";
   document.querySelector(".hd").style.display = "";
   document.getElementById("backBar").style.display = "none";
@@ -279,6 +342,8 @@ document.getElementById("ph").addEventListener("keydown", function(e){
   if (e.key === "Enter") lookup();
 });
 
+tickCountdown();
+setInterval(tickCountdown, 1000);
 loadTicker();
 </script>
 </body></html>
